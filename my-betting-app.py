@@ -14,17 +14,18 @@ with st.expander("⚙️ Impostazioni Budget", expanded=False):
     max_puntata = st.number_input("Limite Singola Puntata (€)", value=30)
     frazione_kelly = st.slider("Prudenza (Frazione Kelly)", 0.1, 1.0, 0.5)
 
-# --- SEZIONE 2: INPUT CAVALLI ---
+# --- NUOVA SEZIONE 2: DINAMICA ---
 st.subheader("📊 Dati Vincenti & Sferratura")
-st.info("Inserisci Quota Fissa e spunta se il cavallo è SFERRATO (SS)")
+num_cavalli = st.number_input("Quanti cavalli corrono?", min_value=1, max_value=24, value=12)
 
-# Creiamo una tabella editabile per i 10 cavalli
 cavalli_data = []
-for i in range(1, 11):
+for i in range(1, num_cavalli + 1):
+    # Valori di default per questa specifica corsa (Corsa 5 Cesena)
+    # Puoi lasciarli a 10.0 e cambiarli a mano nell'app
     cavalli_data.append({
         "N": i,
-        "Ritirato": True if i == 1 else False, # Esempio: il 1 è ritirato
-        "Quota Fissa": 10.0 if i != 1 else 0.0,
+        "Ritirato": False,
+        "Quota Fissa": 10.0,
         "Sferrato (SS)": False
     })
 
