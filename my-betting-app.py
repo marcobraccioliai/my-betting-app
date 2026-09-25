@@ -108,7 +108,7 @@ if st.button("🚀 CALCOLA PUNTATE OTTIMALI", use_container_width=True):
             for item in lista_puntate:
                 # Calcolo proporzionale: (Puntata Singola / Totale Suggerito) * Limite Corsa
                 puntata_finale = (item['puntata_raw'] / totale_suggerito) * max_corsa
-                puntata_arrotondata = np.floor(puntata_finale)
+                puntata_arrotondata = int(round(puntata_finale))
                 
                 if puntata_arrotondata >= 2:
                     st.info(f"Proporzione {item['coppia'][0]}-{item['coppia'][1]}: **{int(puntata_arrotondata)} €**")
