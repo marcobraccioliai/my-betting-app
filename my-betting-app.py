@@ -52,16 +52,20 @@ if st.button("🚀 CALCOLA PUNTATE OTTIMALI", use_container_width=True):
     
     # Calcolo probabilità base
     df_active['prob'] = 1 / df_active['Quota Fissa']
+    
+    # Applichiamo un piccolo bonus (5%) se sferrato (SS)
     df_active.loc[df_active['Sferrato (SS)'] == True, 'prob'] *= 1.05
+    
+    # Normalizzazione
     df_active['prob_norm'] = df_active['prob'] / df_active['prob'].sum()
     
     # Simulazione Monte Carlo
-    n_sim = 100000 
+    n_sim = 100000 # Buon compromesso velocità/precisione per mobile
     conteggio = {}
     
     # Parsing coppie
     try:
-        coppie_list = [c.strip() for c in input_coppie.split(",") if ":" in c]
+        coppie_list = [c.strip() for c in input_coppie.split(",")]
         for item in coppie_list:
             coppia_str, quota = item.split(":")
             c1, c2 = map(int, coppia_str.split("-"))
@@ -77,44 +81,30 @@ if st.button("🚀 CALCOLA PUNTATE OTTIMALI", use_container_width=True):
                 if coppia[0] in podio and coppia[1] in podio:
                     conteggio[coppia][0] += 1
         
-        # --- PREPARAZIONE LISTA PUNTATE ---
-        lista_puntate = []
+        # Risultati
+        st.divider()
+        st.subheader("💰 Verdetto dello Sportello")
+        
+        results_found = False
         for coppia, dati in conteggio.items():
             p_sim = dati[0] / n_sim
             quota_mkt = dati[1]
             roi = (p_sim * quota_mkt) - 1
+            
             if roi > 0:
+                results_found = True
                 f_k = roi / (quota_mkt - 1)
-                puntata_raw = f_k * budget * frazione_kelly
-                lista_puntate.append({'coppia': coppia, 'puntata_raw': puntata_raw, 'roi': roi, 'quota': quota_mkt})
-        
-        if not lista_puntate:
-            st.error("Nessun valore trovato.")
-        else:
-            # 1. VERDETTO ORIGINALE
-            st.divider()
-            st.subheader("💰 Verdetto dello Sportello (Kelly)")
-            for item in lista_puntate:
-                puntata = min(item['puntata_raw'], max_puntata)
-                if puntata >= 2:
-                    st.success(f"**COPPIA {item['coppia'][0]}-{item['coppia'][1]}**: PUNTA **{int(puntata)} €** (ROI {item['roi']:.1%})")
-            
-            # 2. VERDETTO NORMALIZZATO (Logica aggiunta)
-            st.divider()
-            st.subheader("⚖️ Distribuzione Proporzionale (Budget Corretto)")
-            max_corsa = st.sidebar.number_input("Limite Totale € per questa corsa", value=10.0)
-            totale_suggerito = sum([item['puntata_raw'] for item in lista_puntate])
-            
-            for item in lista_puntate:
-                # Calcolo proporzionale: (Puntata Singola / Totale Suggerito) * Limite Corsa
-                puntata_finale = (item['puntata_raw'] / totale_suggerito) * max_corsa
-                puntata_arrotondata = int(round(puntata_finale))
+                puntata = min(np.floor(f_k * budget * frazione_kelly), max_puntata)
                 
-                if puntata_arrotondata >= 2:
-                    st.info(f"Proporzione {item['coppia'][0]}-{item['coppia'][1]}: **{int(puntata_arrotondata)} €**")
+                if puntata >= 2:
+                    st.success(f"**COPPIA {coppia[0]}-{coppia[1]}**")
+                    st.write(f"👉 PUNTA: **{int(puntata)} €**")
+                    st.write(f"📈 ROI Stimato: {roi:.1%}")
+                else:
+                    st.warning(f"Coppia {coppia[0]}-{coppia[1]}: Valore positivo ma puntata sotto il minimo di 2€.")
             
-            st.write("---")
-            st.write("Nota: Usa la sezione 'Distribuzione Proporzionale' se vuoi rispettare rigidamente il tuo limite di budget per corsa.")
-
+        if not results_found:
+            st.error("Nessun valore trovato. Meglio non scommettere su queste coppie.")
+            
     except Exception as e:
-        st.error(f"Errore: {e}")
+        st.error(f"Errore nell'inserimento dati: {e}")
