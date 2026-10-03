@@ -43,7 +43,12 @@ df_input = st.data_editor(
 st.subheader("🎯 Accoppiate Piazzate (Monitor)")
 st.write("Inserisci le coppie che stai monitorando e la quota minima")
 # Esempio di input rapido: "4-10:2.54, 3-7:2.75"
-input_coppie = st.text_input("Formato: 4-10:2.54, 3-7:2.75", "4-10:2.54, 3-7:2.75")
+#input_coppie = st.text_input("Formato: 4-10:2.54, 3-7:2.75", "4-10:2.54, 3-7:2.75")
+input_coppie = st.text_input(
+    "Accoppiate Piazzate (Monitor)", 
+    value="", 
+    placeholder="Es: 4-10:2.54, 3-7:2.75"
+)
 
 # --- SEZIONE 4: CALCOLO ---
 if st.button("🚀 CALCOLA PUNTATE OTTIMALI", use_container_width=True):
