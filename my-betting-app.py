@@ -60,7 +60,7 @@ if st.button("🚀 CALCOLA PUNTATE OTTIMALI", use_container_width=True):
     df_active['prob_norm'] = df_active['prob'] / df_active['prob'].sum()
     
     # Simulazione Monte Carlo
-    n_sim = 200000 # Buon compromesso velocità/precisione per mobile
+    n_sim = 100000 
     conteggio = {}
     
     # Parsing coppie
@@ -81,29 +81,51 @@ if st.button("🚀 CALCOLA PUNTATE OTTIMALI", use_container_width=True):
                 if coppia[0] in podio and coppia[1] in podio:
                     conteggio[coppia][0] += 1
         
-        # Risultati
-        st.divider()
-        st.subheader("💰 Verdetto dello Sportello")
+        # --- RACCOLTA E ORDINAMENTO RISULTATI ---
+        valid_results = []
+        low_stake_results = []
         
-        results_found = False
         for coppia, dati in conteggio.items():
             p_sim = dati[0] / n_sim
             quota_mkt = dati[1]
             roi = (p_sim * quota_mkt) - 1
             
             if roi > 0:
-                results_found = True
                 f_k = roi / (quota_mkt - 1)
                 puntata = min(np.floor(f_k * budget * frazione_kelly), max_puntata)
                 
+                result_item = {
+                    'coppia': coppia,
+                    'roi': roi,
+                    'puntata': int(puntata)
+                }
+                
                 if puntata >= 2:
-                    st.success(f"**COPPIA {coppia[0]}-{coppia[1]}**")
-                    st.write(f"👉 PUNTA: **{int(puntata)} €**")
-                    st.write(f"📈 ROI Stimato: {roi:.1%}")
+                    valid_results.append(result_item)
                 else:
-                    st.warning(f"Coppia {coppia[0]}-{coppia[1]}: Valore positivo ma puntata sotto il minimo di 2€.")
-            
-        if not results_found:
+                    low_stake_results.append(result_item)
+                    
+        # Ordinamento per ROI decrescente (dal più alto al più basso)
+        valid_results = sorted(valid_results, key=lambda x: x['roi'], reverse=True)
+        low_stake_results = sorted(low_stake_results, key=lambda x: x['roi'], reverse=True)
+        
+        # Risultati a schermo
+        st.divider()
+        st.subheader("💰 Verdetto dello Sportello")
+        
+        if valid_results or low_stake_results:
+            # Mostra prima le scommesse valide ordinate per ROI
+            for res in valid_results:
+                c1, c2 = res['coppia']
+                st.success(f"**COPPIA {c1}-{c2}**")
+                st.write(f"👉 PUNTA: **{res['puntata']} €**")
+                st.write(f"📈 ROI Stimato: {res['roi']:.1%}")
+                
+            # Mostra quelle con puntata sotto i 2€
+            for res in low_stake_results:
+                c1, c2 = res['coppia']
+                st.warning(f"Coppia {c1}-{c2}: Valore positivo (ROI: {res['roi']:.1%}) ma puntata sotto il minimo di 2€.")
+        else:
             st.error("Nessun valore trovato. Meglio non scommettere su queste coppie.")
             
     except Exception as e:
