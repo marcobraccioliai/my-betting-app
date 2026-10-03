@@ -11,7 +11,7 @@ st.write("Inserisci i dati del monitor e calcola il valore.")
 # --- SEZIONE 1: CONFIGURAZIONE CORSA ---
 with st.expander("⚙️ Impostazioni Budget", expanded=False):
     budget = st.number_input("Budget Totale (€)", value=200)
-    max_puntata = st.number_input("Limite Singola Puntata (€)", value=30)
+    max_puntata = st.number_input("Limite Singola Puntata (€)", value=10)
     frazione_kelly = st.slider("Prudenza (Frazione Kelly)", 0.1, 1.0, 0.5)
 
 # --- NUOVA SEZIONE 2: DINAMICA ---
