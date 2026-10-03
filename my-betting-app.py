@@ -60,7 +60,7 @@ if st.button("🚀 CALCOLA PUNTATE OTTIMALI", use_container_width=True):
     df_active['prob_norm'] = df_active['prob'] / df_active['prob'].sum()
     
     # Simulazione Monte Carlo
-    n_sim = 100000 # Buon compromesso velocità/precisione per mobile
+    n_sim = 200000 # Buon compromesso velocità/precisione per mobile
     conteggio = {}
     
     # Parsing coppie
