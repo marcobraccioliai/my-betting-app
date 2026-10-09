@@ -19,7 +19,7 @@ if st.button("Genera Stringa Input"):
     try:
         # Logica validata: divide in blocchi basati sul numero cavallo
         # r'\n-?\s*(\d+)\s*silks' cerca il numero cavallo che precede la parola "silks"
-        blocchi = re.split(r'\n-?\s*(\d+)\s*silks', raw_text.strip())
+        blocchi = re.split(r'(?:\n|^)-?\s*(\d+)\s+silks', raw_text.strip())
         
         raw_input_list = []
         
