@@ -8,12 +8,11 @@ st.markdown("""<style>.stApp {background-color: #E1F5FE;}</style>""", unsafe_all
 
 st.title("⚙️ Engine V4 (Motore di Simulazione)")
 
-# --- CONFIGURAZIONE ---
-with st.sidebar:
-    st.header("⚙️ Parametri")
-    budget = st.number_input("Budget (€)", value=200.0)
-    max_puntata = st.number_input("Max Puntata (€)", value=10.0)
-    kelly_frac = st.slider("Prudenza Kelly", 0.1, 1.0, 0.5)
+# --- CONFIGURAZIONE (Expander come da template) ---
+with st.expander("⚙️ Impostazioni Budget", expanded=False):
+    budget = st.number_input("Budget Totale (€)", value=200.0)
+    max_puntata = st.number_input("Limite Singola Puntata (€)", value=10.0)
+    kelly_frac = st.slider("Prudenza (Frazione Kelly)", 0.1, 1.0, 0.5)
 
 # --- INPUT DATI ---
 st.subheader("📥 Input Dati")
@@ -46,10 +45,10 @@ if st.button("🚀 CALCOLA ANALISI"):
         df["forza"] = (df["p_v"]**0.5) * (df["p_p"]**0.5)
         df["forza"] /= df["forza"].sum()
         
-        rng = np.random.default_rng(None) # RNG dinamico
+        rng = np.random.default_rng(None)
         conteggi = {c: 0 for c in quote_dict.keys()}
         
-        for _ in range(200000): # N_SIM
+        for _ in range(200000):
             podio = set(rng.choice(df["numero"].to_numpy(), size=3, replace=False, p=df["forza"].to_numpy()))
             for c in conteggi:
                 if c[0] in podio and c[1] in podio: conteggi[c] += 1
@@ -62,7 +61,7 @@ if st.button("🚀 CALCOLA ANALISI"):
             
         df_res = pd.DataFrame(risultati)
         
-        # 4. Selezione Scommesse (Kelly)
+        # 4. Selezione Scommesse
         df_scelte = df_res[(df_res["Prob"] >= 0.35) & (df_res["Edge"] >= 0.05) & (df_res["ROI"] >= 0.10)].copy()
         df_scelte["Puntata"] = (np.floor((df_scelte["ROI"]/(df_scelte["Quota"]-1) * budget * kelly_frac).clip(0, max_puntata) / 1.0) * 1.0)
         df_scelte = df_scelte[df_scelte["Puntata"] >= 2.0].sort_values("Prob", ascending=False)
