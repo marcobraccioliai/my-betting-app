@@ -34,7 +34,7 @@ if st.button("🚀 CALCOLA ANALISI"):
         
         # 2. Parsing Accoppiate
         quote_dict = {}
-        for item in accoppiate_raw.split(','):
+        for item in accoppiata_raw.split(','):
             coppia_str, quota_str = item.split(':')
             c1, c2 = coppia_str.strip().split('-')
             quote_dict[(int(c1), int(c2))] = float(quota_str.strip())
