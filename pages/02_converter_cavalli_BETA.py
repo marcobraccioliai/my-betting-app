@@ -3,7 +3,7 @@ import streamlit as st
 st.set_page_config(page_title="Parser Cavalli", layout="centered")
 st.title("✂️ Converter Quote Singoli Cavalli")
 
-raw_text = st.text_area("Incolla testo grezzo:", height=300)
+raw_text = st.text_area("Incolla testo grezzo:")
 
 if st.button("Converti"):
     try:
