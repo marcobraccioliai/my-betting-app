@@ -3,7 +3,7 @@ import streamlit as st
 st.title("✂️ Converter Quote Accoppiate Piazzate")
 st.write("Incolla qui sotto il testo grezzo copiato dal sito SNAI (quote accoppiate piazzate):")
 
-raw_text = st.text_area("Testo copiato dal sito:", height=200)
+raw_text = st.text_area("Incolla testo grezzo:", height=200)
 
 if st.button("Converti in stringa"):
     lines = raw_text.split('\n')
