@@ -6,7 +6,7 @@ from math import sqrt
 # Stile: Azzurro tenue
 st.markdown("""<style>.stApp {background-color: #FFFACD;}</style>""", unsafe_allow_html=True)
 
-st.title("⚙️ Engine V4 (Motore di Simulazione)")
+st.title("⚙️ Plackett-Luce")
 
 # --- CONFIGURAZIONE (Expander come da template) ---
 with st.expander("⚙️ Impostazioni Budget", expanded=False):
