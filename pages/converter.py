@@ -1,6 +1,6 @@
 import streamlit as st
 
-st.title("✂️ Convertitore SNAI")
+st.title("✂️ Converter Quote Accoppiate Piazzate")
 st.write("Incolla qui sotto il testo grezzo copiato dal sito SNAI:")
 
 raw_text = st.text_area("Testo copiato dal sito", height=200)
