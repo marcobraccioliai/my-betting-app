@@ -4,7 +4,7 @@ import pandas as pd
 from math import sqrt
 
 # Stile: Azzurro tenue
-st.markdown("""<style>.stApp {background-color: #E1F5FE;}</style>""", unsafe_allow_html=True)
+st.markdown("""<style>.stApp {background-color: #FFFACD;}</style>""", unsafe_allow_html=True)
 
 st.title("⚙️ Engine V4 (Motore di Simulazione)")
 
