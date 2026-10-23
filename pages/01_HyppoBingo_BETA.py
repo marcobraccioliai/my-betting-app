@@ -5,10 +5,10 @@ import pandas as pd
 st.set_page_config(page_title="HyppoBingo BETA", layout="centered")
 st.title("🏇 HyppoBingo BETA")
 
-with st.sidebar:
-    budget = st.number_input("Budget (€)", value=200.0)
-    max_puntata = st.number_input("Max Puntata (€)", value=10.0)
-    frazione_kelly = st.slider("Kelly", 0.1, 1.0, 0.5)
+with st.expander("⚙️ Impostazioni Budget", expanded=False):
+    budget = st.number_input("Budget Totale (€)", value=200)
+    max_puntata = st.number_input("Limite Singola Puntata (€)", value=10)
+    frazione_kelly = st.slider("Prudenza (Frazione Kelly)", 0.1, 1.0, 0.5)
 
 # --- INPUT A PASTONE ---
 st.subheader("1. Incolla Dati Cavalli")
