@@ -2,6 +2,7 @@ import streamlit as st
 
 st.set_page_config(page_title="Parser Cavalli", layout="centered")
 st.title("✂️ Converter Quote Singoli Cavalli")
+st.write("Incolla qui sotto il testo grezzo copiato dal sito SNAI (quote cavallo vincente, al totalizzatore):")
 
 raw_text = st.text_area("Incolla testo grezzo:", height=200)
 
