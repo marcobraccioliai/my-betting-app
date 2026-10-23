@@ -1,6 +1,6 @@
 import streamlit as st
 
-st.title("✂️ Converter Quote Accoppiate Piazzate")
+st.title("✂️ Converter Quote ACP NX")
 st.write("Incolla qui sotto il testo grezzo copiato dal sito SNAI (quote accoppiate piazzate):")
 
 raw_text = st.text_area("Incolla testo grezzo:", height=200)
