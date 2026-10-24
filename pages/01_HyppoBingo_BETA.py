@@ -13,11 +13,16 @@ st.markdown("""
     .stApp h1, .stApp h2, .stApp h3, .stApp p, .stApp label, .stApp div[data-testid="stMarkdownContainer"] {
         color: #FFFDD0 !important;
     }
+	
+	/* Forza il reset della sidebar ai colori standard di Streamlit */
+    [data-testid="stSidebar"] {
+        background-color: #f0f2f6 !important;
+    }
+    [data-testid="stSidebar"] * {
+        color: #31333F !important;
+    }
     </style>
 """, unsafe_allow_html=True)
-
-st.set_page_config(page_title="HyppoBingo BETA", layout="centered")
-st.title("🏇 HyppoBingo BETA")
 
 with st.expander("⚙️ Impostazioni Budget", expanded=False):
     budget = st.number_input("Budget Totale (€)", value=200)
