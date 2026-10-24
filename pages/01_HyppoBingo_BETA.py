@@ -91,4 +91,4 @@ if st.button("🚀🚀🚀🚀"):
                 puntata = min(np.floor((roi/(quota-1)) * budget * frazione_kelly), max_puntata)
                 if puntata >= 2: st.success(f"**{c_str}**: {int(puntata)}€ (ROI {roi:.1%})")
                 
-    except Exception as e: st.error(f"Errore: {e}")
+    except Exception as e: st.error(f"Errore nell'inserimento dati: {e}")
