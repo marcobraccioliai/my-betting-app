@@ -13,7 +13,7 @@ st.markdown("""
 st.title("✂️ Parser SNAI (Data Bridge)")
 st.write("Incolla qui il testo grezzo dal sito SNAI per generare la stringa di input:")
 
-raw_text = st.text_area("Testo grezzo dal browser", height=300)
+raw_text = st.text_area("Incolla testo grezzo:", height=200)
 
 if st.button("Genera Stringa Input"):
     try:
