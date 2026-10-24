@@ -2,22 +2,27 @@ import streamlit as st
 
 st.markdown("""
     <style>
-    /* 1. Sfondo rosso porpora */
+    /* 1. Sfondo rosso porpora solo per l'area principale */
     [data-testid="stAppViewContainer"] {
         background-color: #B20000 !important;
     }
 
-    /* 2. Testo crema per tutto tranne i bottoni */
-    [data-testid="stAppViewContainer"] *:not(.stButton) * {
+    /* 2. Testo crema SOLO per i figli dell'area principale */
+    [data-testid="stAppViewContainer"] h1, 
+    [data-testid="stAppViewContainer"] h2, 
+    [data-testid="stAppViewContainer"] h3, 
+    [data-testid="stAppViewContainer"] p, 
+    [data-testid="stAppViewContainer"] div, 
+    [data-testid="stAppViewContainer"] label {
         color: #FFFDD0 !important;
     }
 
-    /* 3. Forza il testo dei bottoni a nero */
-    .stButton button {
+    /* 3. Forza il testo dei bottoni a nero, sovrascrivendo tutto */
+    button {
         color: #000000 !important;
     }
 
-    /* 4. Reset sidebar */
+    /* 4. Sidebar: Reset totale e forzato ai colori di default */
     [data-testid="stSidebar"] {
         background-color: #F0F2F6 !important;
     }
@@ -25,9 +30,9 @@ st.markdown("""
         color: #31333F !important;
     }
 
-    /* 5. Input box */
+    /* 5. Input box: Sfondo chiaro e testo nero */
     .stTextArea textarea, .stTextInput input {
-        background-color: #F0F2F6 !important;
+        background-color: #FFFFFF !important;
         color: #000000 !important;
     }
     </style>
