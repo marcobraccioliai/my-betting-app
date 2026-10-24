@@ -46,20 +46,15 @@ if st.button("🚀🚀🚀🚀"):
         lines = [l.strip() for l in raw_text.split('\n') if l.strip()]
         result = []
         current_horse = None
-        
+
         for line in lines:
             if line.isdigit():
                 current_horse = line
             if "Vincente" in line and current_horse:
-                # Conversione quota
-                quota_val = float(line.replace("Vincente", "").strip())
-                
-                # LOGICA DI SICUREZZA: Se quota <= 1, imposta a 1000
-                if quota_val <= 1.0:
-                    quota_finale = 1000.00
-                else:
-                    quota_finale = quota_val
-                result.append(f"{current_horse}:{quota}")
+                quota = float(line.replace("Vincente", "").strip())
+                if quota <= 1.0:
+                    quota = 1000.0
+                result.append(f"{current_horse}:{quota:.2f}")
                 current_horse = None
         
         if result:
