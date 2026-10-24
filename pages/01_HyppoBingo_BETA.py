@@ -5,8 +5,19 @@ import pandas as pd
 # Stile grafico: Rosso porpora per identificazione immediata
 st.markdown("""
     <style>
+    /* Sfondo generale */
     .stApp {
-        background-color: #B20000;
+        background-color: #B20000 !important;
+        color: #FFFDD0 !important;
+    }
+    /* Titoli, paragrafi e etichette */
+    h1, h2, h3, p, div, label, span {
+        color: #FFFDD0 !important;
+    }
+    /* Input box per mantenere contrasto */
+    .stTextInput > div > div > input {
+        color: #B20000 !important;
+        background-color: #FFFDD0 !important;
     }
     </style>
 """, unsafe_allow_html=True)
