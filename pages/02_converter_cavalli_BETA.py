@@ -7,32 +7,28 @@ st.markdown("""
         background-color: #B20000 !important;
     }
 
-    /* 2. Testo crema SOLO per i figli dell'area principale */
+    /* 2. Testo crema solo per i contenuti dentro l'area principale */
     [data-testid="stAppViewContainer"] h1, 
     [data-testid="stAppViewContainer"] h2, 
     [data-testid="stAppViewContainer"] h3, 
     [data-testid="stAppViewContainer"] p, 
-    [data-testid="stAppViewContainer"] div, 
+    [data-testid="stAppViewContainer"] div:not([data-testid="stSidebar"]), 
     [data-testid="stAppViewContainer"] label {
         color: #FFFDD0 !important;
     }
 
-    /* 3. Forza il testo dei bottoni a nero, sovrascrivendo tutto */
-    button {
-        color: #000000 !important;
-    }
-
-    /* 4. Sidebar: Reset totale e forzato ai colori di default */
+    /* 3. Forza la Sidebar al suo stile nativo (il contrario del CSS globale) */
     [data-testid="stSidebar"] {
         background-color: #F0F2F6 !important;
+        color: #31333F !important;
     }
+    
     [data-testid="stSidebar"] * {
         color: #31333F !important;
     }
 
-    /* 5. Input box: Sfondo chiaro e testo nero */
-    .stTextArea textarea, .stTextInput input {
-        background-color: #FFFFFF !important;
+    /* 4. Forza il testo del bottone a nero */
+    .stButton button {
         color: #000000 !important;
     }
     </style>
