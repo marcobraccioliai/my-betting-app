@@ -51,7 +51,7 @@ st.write("Inserisci le coppie che stai monitorando e la quota minima (prese da C
 input_coppie = st.text_input("Formato: 4-10:2.54, 3-7:2.75", "")
 
 # --- MOTORE (LOGICA V1) ---
-if st.button("🚀 CALCOLA"):
+if st.button("🚀🚀🚀🚀"):
     try:
         # Parser Cavalli
         lines = [l.strip() for l in input_cavalli.split('\n') if l.strip()]
