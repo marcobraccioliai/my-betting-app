@@ -10,28 +10,29 @@ st.markdown("""
         background-color: #B20000 !important;
     }
 
-    /* 2. Testo crema solo per l'area principale */
-    [data-testid="stAppViewContainer"] h1, 
-    [data-testid="stAppViewContainer"] h2, 
-    [data-testid="stAppViewContainer"] h3, 
-    [data-testid="stAppViewContainer"] p, 
-    [data-testid="stAppViewContainer"] div {
+    /* 2. Testo crema solo per l'area principale (target ultra-specifico) */
+    .stApp div[data-testid="stMarkdownContainer"], 
+    .stApp label, 
+    .stApp h1, .stApp h2, .stApp h3 {
         color: #FFFDD0 !important;
     }
 
-    /* 3. Forza la Sidebar a tornare normale */
+    /* 3. Reset totale e forzato della sidebar */
     [data-testid="stSidebar"] {
         background-color: #F0F2F6 !important;
     }
+    
+    /* Forza il testo della sidebar a nero, ignorando qualsiasi regola precedente */
+    [data-testid="stSidebar"] div, 
     [data-testid="stSidebar"] span, 
     [data-testid="stSidebar"] p {
-        color: #31333F !important;
+        color: #000000 !important;
     }
 
-    /* 4. FIX: Campi di input (box di testo) - Nero su bianco/grigio */
-    .stTextArea textarea, .stTextInput input {
-        background-color: #F0F2F6 !important;
+    /* 4. Pulsanti */
+    .stButton button {
         color: #000000 !important;
+        background-color: #FFFDD0 !important;
     }
     </style>
 """, unsafe_allow_html=True)
