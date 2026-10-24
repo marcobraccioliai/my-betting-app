@@ -5,19 +5,22 @@ import pandas as pd
 # Stile grafico: Rosso porpora per identificazione immediata
 st.markdown("""
     <style>
-    /* Sfondo generale */
+    /* Sfondo pagina principale */
     .stApp {
         background-color: #B20000 !important;
+    }
+    
+    /* Testo solo nell'area principale */
+    .stApp h1, .stApp h2, .stApp h3, .stApp p, .stApp label, .stApp div[data-testid="stMarkdownContainer"] {
         color: #FFFDD0 !important;
     }
-    /* Titoli, paragrafi e etichette */
-    h1, h2, h3, p, div, label, span {
-        color: #FFFDD0 !important;
+    
+    /* Forza il reset della sidebar ai colori standard di Streamlit */
+    [data-testid="stSidebar"] {
+        background-color: #f0f2f6 !important;
     }
-    /* Input box per mantenere contrasto */
-    .stTextInput > div > div > input {
-        color: #B20000 !important;
-        background-color: #FFFDD0 !important;
+    [data-testid="stSidebar"] * {
+        color: #31333F !important;
     }
     </style>
 """, unsafe_allow_html=True)
