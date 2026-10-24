@@ -7,29 +7,29 @@ st.markdown("""
         background-color: #B20000 !important;
     }
 
-    /* 2. Testo crema solo per i contenuti dentro l'area principale */
-    [data-testid="stAppViewContainer"] h1, 
-    [data-testid="stAppViewContainer"] h2, 
-    [data-testid="stAppViewContainer"] h3, 
-    [data-testid="stAppViewContainer"] p, 
-    [data-testid="stAppViewContainer"] div:not([data-testid="stSidebar"]), 
-    [data-testid="stAppViewContainer"] label {
+    /* 2. Testo crema solo per l'area principale (target ultra-specifico) */
+    .stApp div[data-testid="stMarkdownContainer"], 
+    .stApp label, 
+    .stApp h1, .stApp h2, .stApp h3 {
         color: #FFFDD0 !important;
     }
 
-    /* 3. Forza la Sidebar al suo stile nativo (il contrario del CSS globale) */
+    /* 3. Reset totale e forzato della sidebar */
     [data-testid="stSidebar"] {
         background-color: #F0F2F6 !important;
-        color: #31333F !important;
     }
     
-    [data-testid="stSidebar"] * {
-        color: #31333F !important;
+    /* Forza il testo della sidebar a nero, ignorando qualsiasi regola precedente */
+    [data-testid="stSidebar"] div, 
+    [data-testid="stSidebar"] span, 
+    [data-testid="stSidebar"] p {
+        color: #000000 !important;
     }
 
-    /* 4. Forza il testo del bottone a nero */
+    /* 4. Pulsanti */
     .stButton button {
         color: #000000 !important;
+        background-color: #FFFDD0 !important;
     }
     </style>
 """, unsafe_allow_html=True)
