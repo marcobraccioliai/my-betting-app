@@ -1,5 +1,7 @@
 import streamlit as st
 
+st.set_page_config(page_title="Parser Cavalli", layout="centered")
+
 st.markdown("""
     <style>
     /* 1. Sfondo rosso porpora solo per l'area principale */
@@ -34,7 +36,6 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-st.set_page_config(page_title="Parser Cavalli", layout="centered")
 st.title("✂️ Converter Quote Singoli Cavalli")
 st.write("Incolla qui sotto il testo grezzo copiato dal sito SNAI (quote cavallo vincente, al totalizzatore):")
 
