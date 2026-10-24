@@ -46,6 +46,7 @@ st.subheader("1. Incolla Dati Cavalli")
 input_cavalli = st.text_area("Formato: 4 (riga) Vincente 2.80", height=150)
 
 st.subheader("2. Incolla Accoppiate")
+st.write("Inserisci le coppie che stai monitorando e la quota minima")
 input_coppie = st.text_input("Formato: 4-10:2.54, 3-7:2.75", "")
 
 # --- MOTORE (LOGICA V1) ---
