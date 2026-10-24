@@ -53,18 +53,21 @@ input_coppie = st.text_input("Formato: 4-10:2.54, 3-7:2.75", "")
 # --- MOTORE (LOGICA V1) ---
 if st.button("🚀🚀🚀🚀"):
     try:
-        # Parser Cavalli
-        lines = [l.strip() for l in input_cavalli.split('\n') if l.strip()]
+        # Parsing Cavalli (Nuovo formato N:Quota)
+        lines = [i.strip() for i in input_cavalli.replace('\n', ',').split(',') if i.strip()]
         data_cavalli = {'numero': [], 'quota_vincente': []}
-        curr_n = None
-        for line in lines:
-            if line.isdigit(): curr_n = int(line)
-            elif "Vincente" in line and curr_n:
-                data_cavalli['numero'].append(curr_n)
-                data_cavalli['quota_vincente'].append(float(line.replace("Vincente", "").strip()))
-                curr_n = None
+        for item in lines:
+            if ':' in item:
+                n, q = item.split(':')
+                data_cavalli['numero'].append(int(n))
+                data_cavalli['quota_vincente'].append(float(q))
         
         df = pd.DataFrame(data_cavalli)
+        # Assicuriamo che il dataframe non sia vuoto
+        if df.empty:
+            st.error("Nessun cavallo trovato. Controlla il formato stringa.")
+            st.stop()
+            
         df['prob_mercato'] = (1/df['quota_vincente']) / (1/df['quota_vincente']).sum()
         
         # Simulazione Monte Carlo
