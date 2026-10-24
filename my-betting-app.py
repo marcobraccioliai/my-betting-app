@@ -6,7 +6,6 @@ import pandas as pd
 st.set_page_config(page_title="SocioBet Cesena", layout="centered")
 
 st.title("🏇 SocioBet: Strategia Ippica")
-st.write("Inserisci i dati del monitor e calcola il valore.")
 
 # --- SEZIONE 1: CONFIGURAZIONE CORSA ---
 with st.expander("⚙️ Impostazioni Budget", expanded=False):
