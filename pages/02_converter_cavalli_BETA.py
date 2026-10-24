@@ -40,7 +40,7 @@ st.write("Incolla qui sotto il testo grezzo copiato dal sito SNAI (quote cavallo
 
 raw_text = st.text_area("Incolla testo grezzo:", height=200)
 
-if st.button("Converti in stringa"):
+if st.button("🚀🚀🚀🚀"):
     try:
         lines = [l.strip() for l in raw_text.split('\n') if l.strip()]
         result = []
