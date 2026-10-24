@@ -2,6 +2,15 @@ import streamlit as st
 import numpy as np
 import pandas as pd
 
+# Stile grafico: Rosso porpora per identificazione immediata
+st.markdown("""
+    <style>
+    .stApp {
+        background-color: #B20000;
+    }
+    </style>
+""", unsafe_allow_html=True)
+
 st.set_page_config(page_title="HyppoBingo BETA", layout="centered")
 st.title("🏇 HyppoBingo BETA")
 
