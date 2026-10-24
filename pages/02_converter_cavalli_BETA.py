@@ -16,13 +16,19 @@ st.markdown("""
         color: #FFFDD0 !important;
     }
 
-    /* 3. Forza la Sidebar a tornare normale (sfondo bianco/grigio e testo scuro) */
+    /* 3. Forza la Sidebar a tornare normale */
     [data-testid="stSidebar"] {
         background-color: #F0F2F6 !important;
     }
     [data-testid="stSidebar"] span, 
     [data-testid="stSidebar"] p {
         color: #31333F !important;
+    }
+
+    /* 4. FIX: Campi di input (box di testo) - Nero su bianco/grigio */
+    .stTextArea textarea, .stTextInput input {
+        background-color: #F0F2F6 !important;
+        color: #000000 !important;
     }
     </style>
 """, unsafe_allow_html=True)
