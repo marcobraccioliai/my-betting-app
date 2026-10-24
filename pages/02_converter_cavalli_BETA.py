@@ -7,16 +7,21 @@ st.markdown("""
         background-color: #B20000 !important;
     }
 
-    /* 2. Testo crema solo per l'area principale */
+    /* 2. Testo crema per l'area principale (escludendo i bottoni) */
     [data-testid="stAppViewContainer"] h1, 
     [data-testid="stAppViewContainer"] h2, 
     [data-testid="stAppViewContainer"] h3, 
     [data-testid="stAppViewContainer"] p, 
-    [data-testid="stAppViewContainer"] div {
+    [data-testid="stAppViewContainer"] div:not(.stButton) {
         color: #FFFDD0 !important;
     }
 
-    /* 3. Forza la Sidebar a tornare normale */
+    /* 3. Forza il testo dei bottoni a nero */
+    .stButton button {
+        color: #000000 !important;
+    }
+
+    /* 4. Forza la Sidebar a tornare normale */
     [data-testid="stSidebar"] {
         background-color: #F0F2F6 !important;
     }
@@ -24,8 +29,8 @@ st.markdown("""
     [data-testid="stSidebar"] p {
         color: #31333F !important;
     }
-
-    /* 4. FIX: Campi di input (box di testo) - Nero su bianco/grigio */
+    
+    /* 5. FIX: Campi di input */
     .stTextArea textarea, .stTextInput input {
         background-color: #F0F2F6 !important;
         color: #000000 !important;
