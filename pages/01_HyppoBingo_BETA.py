@@ -7,7 +7,10 @@ st.markdown("""
     <style>
     .stApp {
         background-color: #B20000;
-	.stApp h1, .stApp h2, .stApp h3, .stApp p, .stApp label, .stApp div[data-testid="stMarkdownContainer"] {
+    }
+	
+	/* Testo solo nell'area principale */
+    .stApp h1, .stApp h2, .stApp h3, .stApp p, .stApp label, .stApp div[data-testid="stMarkdownContainer"] {
         color: #FFFDD0 !important;
     }
     </style>
