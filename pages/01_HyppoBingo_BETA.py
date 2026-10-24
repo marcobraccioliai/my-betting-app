@@ -82,7 +82,7 @@ if st.button("🚀🚀🚀🚀"):
                 if c1 in podio and c2 in podio: conteggi[c_str] += 1
         
         # Risultati
-        st.subheader("💰 Verdetto")
+        st.subheader("💰 Verdetto dello Sportello")
         for c_str, vinte in conteggi.items():
             prob = vinte / n_sim
             quota = float(input_coppie.split(c_str+":")[1].split(",")[0])
