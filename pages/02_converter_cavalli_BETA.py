@@ -2,17 +2,13 @@ import streamlit as st
 
 st.markdown("""
     <style>
-    /* 1. Sfondo rosso porpora solo per l'area principale */
+    /* 1. Sfondo rosso porpora */
     [data-testid="stAppViewContainer"] {
         background-color: #B20000 !important;
     }
 
-    /* 2. Testo crema per l'area principale (escludendo i bottoni) */
-    [data-testid="stAppViewContainer"] h1, 
-    [data-testid="stAppViewContainer"] h2, 
-    [data-testid="stAppViewContainer"] h3, 
-    [data-testid="stAppViewContainer"] p, 
-    [data-testid="stAppViewContainer"] div:not(.stButton) {
+    /* 2. Testo crema per tutto tranne i bottoni */
+    [data-testid="stAppViewContainer"] *:not(.stButton) * {
         color: #FFFDD0 !important;
     }
 
@@ -21,16 +17,15 @@ st.markdown("""
         color: #000000 !important;
     }
 
-    /* 4. Forza la Sidebar a tornare normale */
+    /* 4. Reset sidebar */
     [data-testid="stSidebar"] {
         background-color: #F0F2F6 !important;
     }
-    [data-testid="stSidebar"] span, 
-    [data-testid="stSidebar"] p {
+    [data-testid="stSidebar"] * {
         color: #31333F !important;
     }
-    
-    /* 5. FIX: Campi di input */
+
+    /* 5. Input box */
     .stTextArea textarea, .stTextInput input {
         background-color: #F0F2F6 !important;
         color: #000000 !important;
