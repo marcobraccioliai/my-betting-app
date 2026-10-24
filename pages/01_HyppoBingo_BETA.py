@@ -5,20 +5,26 @@ import pandas as pd
 # Stile grafico: Rosso Porpora per identificazione immediata
 st.markdown("""
     <style>
-    .stApp {
-        background-color: #B20000;
+    /* 1. Sfondo rosso porpora solo per l'area principale */
+    [data-testid="stAppViewContainer"] {
+        background-color: #B20000 !important;
     }
-	
-	/* Testo solo nell'area principale */
-    .stApp h1, .stApp h2, .stApp h3, .stApp p, .stApp label, .stApp div[data-testid="stMarkdownContainer"] {
+
+    /* 2. Testo crema solo per l'area principale */
+    [data-testid="stAppViewContainer"] h1, 
+    [data-testid="stAppViewContainer"] h2, 
+    [data-testid="stAppViewContainer"] h3, 
+    [data-testid="stAppViewContainer"] p, 
+    [data-testid="stAppViewContainer"] div {
         color: #FFFDD0 !important;
     }
-	
-	/* Forza il reset della sidebar ai colori standard di Streamlit */
+
+    /* 3. Forza la Sidebar a tornare normale (sfondo bianco/grigio e testo scuro) */
     [data-testid="stSidebar"] {
-        background-color: #f0f2f6 !important;
+        background-color: #F0F2F6 !important;
     }
-    [data-testid="stSidebar"] * {
+    [data-testid="stSidebar"] span, 
+    [data-testid="stSidebar"] p {
         color: #31333F !important;
     }
     </style>
