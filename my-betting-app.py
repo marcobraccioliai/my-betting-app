@@ -40,7 +40,7 @@ df_input = st.data_editor(
 
 # --- SEZIONE 3: ACCOPPIATE PIAZZATE ---
 st.subheader("🎯 Accoppiate Piazzate (Monitor)")
-st.write("Inserisci le coppie che stai monitorando e la quota minima")
+st.write("Inserisci le coppie che stai monitorando e la quota minima (prese da Converter Quote ACP NX)")
 # Esempio di input rapido: "4-10:2.54, 3-7:2.75"
 input_coppie = st.text_input("Formato: 4-10:2.54, 3-7:2.75", "")
 
