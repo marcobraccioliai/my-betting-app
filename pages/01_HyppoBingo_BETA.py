@@ -59,7 +59,7 @@ st.write("Inserisci le coppie che stai monitorando e la quota minima (prese da C
 input_coppie = st.text_input("Formato: 4-10:2.54, 3-7:2.75", "")
 
 # --- MOTORE (LOGICA V1) ---
-if st.button("🚀🚀🚀🚀"):
+if st.button("🚀🚀🚀🚀🚀🚀🚀"):
     try:
         # Parsing Cavalli (Nuovo formato N:Quota)
         lines = [i.strip() for i in input_cavalli.replace('\n', ',').split(',') if i.strip()]
@@ -68,15 +68,16 @@ if st.button("🚀🚀🚀🚀"):
             if ':' in item:
                 n, q = item.split(':')
                 data_cavalli['numero'].append(int(n))
-                data_cavalli['quota_vincente'].append(float(q))
+                # LOGICA DI SICUREZZA: Se quota <= 1, imposta a 1000
+                quota_val = float(q)
+                data_cavalli['quota_vincente'].append(1000.0 if quota_val <= 1.0 else quota_val)
         
         df = pd.DataFrame(data_cavalli)
-        # Assicuriamo che il dataframe non sia vuoto
         if df.empty:
             st.error("Nessun cavallo trovato. Controlla il formato stringa.")
             st.stop()
             
-        df['prob_mercato'] = (1/df['quota_vincente']) / (1/df['quota_vincente']).sum()
+        df['prob_mercato'] = (1/df['quota_vincente']) / (1/df['quota_vincente'].sum())
         
         # Simulazione Monte Carlo
         n_sim = 100000
@@ -91,25 +92,14 @@ if st.button("🚀🚀🚀🚀"):
         
         # Risultati
         st.subheader("💰 Verdetto dello Sportello")
-        # Risultati
-        st.divider()
-        st.subheader("💰 Verdetto dello Sportello")
-        # Risultati
-        st.divider()
-        st.subheader("💰 Verdetto dello Sportello")
         for c_str, vinte in conteggi.items():
             prob = vinte / n_sim
-            # Estrazione quota sicura
-            try:
-                quota = float(input_coppie.split(c_str+":")[1].split(",")[0])
-            except (IndexError, ValueError):
-                continue
-            
+            quota = float(input_coppie.split(c_str+":")[1].split(",")[0])
             roi = (prob * quota) - 1
+            
             if roi > 0:
                 puntata = min(np.floor((roi/(quota-1)) * budget * frazione_kelly), max_puntata)
                 
-                # HTML personalizzato per massima visibilità (Testo nero su sfondo chiaro)
                 if puntata >= 2:
                     st.markdown(f"""
                         <div style="background-color: #FFFDD0; padding: 15px; border-radius: 10px; margin-bottom: 10px; border: 2px solid #C5A059;">
@@ -124,3 +114,6 @@ if st.button("🚀🚀🚀🚀"):
                             <p style="color: #000000; margin: 0;">Coppia {c_str}: Valore positivo (ROI: {roi:.1%}) ma puntata sotto il minimo di 2€.</p>
                         </div>
                     """, unsafe_allow_html=True)
+                
+    except Exception as e: 
+        st.error(f"Errore: {e}")
