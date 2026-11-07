@@ -94,6 +94,9 @@ if st.button("🚀🚀🚀🚀"):
         # Risultati
         st.divider()
         st.subheader("💰 Verdetto dello Sportello")
+        # Risultati
+        st.divider()
+        st.subheader("💰 Verdetto dello Sportello")
         for c_str, vinte in conteggi.items():
             prob = vinte / n_sim
             # Estrazione quota sicura
