@@ -34,6 +34,14 @@ st.markdown("""
         color: #000000 !important;
         background-color: #FFFDD0 !important;
     }
+
+    /* Forza il testo dentro i box colorati (success, warning, error) ad essere scuro */
+    .stAlert, .stSuccess, .stWarning, .stError {
+        color: #000000 !important;
+    }
+    .stAlert div, .stSuccess div, .stWarning div, .stError div {
+        color: #000000 !important;
+    }
     </style>
 """, unsafe_allow_html=True)
 
