@@ -91,12 +91,33 @@ if st.button("🚀🚀🚀🚀"):
         
         # Risultati
         st.subheader("💰 Verdetto dello Sportello")
+        # Risultati
+        st.divider()
+        st.subheader("💰 Verdetto dello Sportello")
         for c_str, vinte in conteggi.items():
             prob = vinte / n_sim
-            quota = float(input_coppie.split(c_str+":")[1].split(",")[0])
+            # Estrazione quota sicura
+            try:
+                quota = float(input_coppie.split(c_str+":")[1].split(",")[0])
+            except (IndexError, ValueError):
+                continue
+            
             roi = (prob * quota) - 1
             if roi > 0:
                 puntata = min(np.floor((roi/(quota-1)) * budget * frazione_kelly), max_puntata)
-                if puntata >= 2: st.success(f"**{c_str}**: {int(puntata)}€ (ROI {roi:.1%})")
                 
-    except Exception as e: st.error(f"Errore nell'inserimento dati: {e}")
+                # HTML personalizzato per massima visibilità (Testo nero su sfondo chiaro)
+                if puntata >= 2:
+                    st.markdown(f"""
+                        <div style="background-color: #FFFDD0; padding: 15px; border-radius: 10px; margin-bottom: 10px; border: 2px solid #C5A059;">
+                            <p style="color: #000000; font-weight: bold; margin: 0; font-size: 20px;">COPPIA {c_str}</p>
+                            <p style="color: #000000; margin: 0; font-size: 18px;">👉 PUNTA: <b>{int(puntata)} €</b></p>
+                            <p style="color: #000000; margin: 0;">📈 ROI Stimato: {roi:.1%}</p>
+                        </div>
+                    """, unsafe_allow_html=True)
+                else:
+                    st.markdown(f"""
+                        <div style="background-color: #FFDAB9; padding: 10px; border-radius: 5px; margin-bottom: 10px;">
+                            <p style="color: #000000; margin: 0;">Coppia {c_str}: Valore positivo (ROI: {roi:.1%}) ma puntata sotto il minimo di 2€.</p>
+                        </div>
+                    """, unsafe_allow_html=True)
