@@ -34,6 +34,13 @@ st.markdown("""
         color: #000000 !important;
         background-color: #FFFDD0 !important;
     }
+
+    /* 5. Testo nero esclusivamente nei riquadri dei verdetti */
+.stApp [data-testid="stAlert"] div[data-testid="stMarkdownContainer"],
+.stApp [data-testid="stAlert"] div[data-testid="stMarkdownContainer"] p,
+.stApp [data-testid="stAlert"] div[data-testid="stMarkdownContainer"] strong {
+    color: #000000 !important;
+}
     </style>
 """, unsafe_allow_html=True)
 
