@@ -117,7 +117,7 @@ if st.button("Elabora e Ottimizza", type="primary"):
       final_string_parts = []
       for b in bets:
         final_string_parts.append(
-            f"**{b['pair']}**: {b['current_stake']}€ (ROI {b['roi']}%)"
+            f"{b['pair']}: {b['current_stake']}€ (ROI {b['roi']}%)"
         )
 
       final_string = " ".join(final_string_parts)
