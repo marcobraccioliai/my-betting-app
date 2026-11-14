@@ -120,7 +120,7 @@ if st.button("Elabora e Ottimizza", type="primary"):
             f"{b['pair']}: {b['current_stake']}€ (ROI {b['roi']}%)"
         )
 
-      final_string = " ".join(final_string_parts)
+      final_string = "\n".join(final_string_parts)
 
       st.subheader("📋 Stringa Ottimizzata (Pronta da copiare)")
       st.code(final_string, language="text")
